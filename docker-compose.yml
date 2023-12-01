@@ -1,0 +1,15 @@
+
+services:
+  directus:
+    container_name: directus
+    image: directus/directus
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./cms:/cms
+    environment:
+      KEY: root
+      SECRET: root
+      ADMIN_EMAIL: root@root.com
+      ADMIN_PASSWORD: root
+    network_mode: host
