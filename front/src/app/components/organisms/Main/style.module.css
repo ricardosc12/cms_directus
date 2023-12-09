@@ -1,5 +1,5 @@
 .root {
-    position: absolute;
+    position: flex;
     margin-left: 175px;
     width: calc(100% - 175px);
     height: 100%;

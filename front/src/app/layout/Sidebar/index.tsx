@@ -1,6 +1,6 @@
 import { For, createSignal } from 'solid-js'
 import style from './style.module.css'
-import { BookIcon, GamesIcon } from '@/icons';
+import { BookIcon, GamesIcon, NotifyIcon, TeamIcon, TeamsIcon, UserIcon } from '@/icons';
 import { useStore } from '@/app/store';
 
 interface RouteProps {
@@ -10,8 +10,10 @@ interface RouteProps {
 }
 
 export const routes = [
-    { id: 'loja', title: "Loja", icon: GamesIcon },
-    { id: 'biblioteca', title: "Biblioteca", icon: BookIcon },
+    { id: 'my_team', title: "Meu time", icon: TeamIcon },
+    { id: 'team', title: "Times", icon: TeamsIcon },
+    { id: 'players', title: "Usuários", icon: UserIcon },
+    { id: 'notify', title: "Notificações", icon: NotifyIcon },
 ]
 
 export function Sidebar() {
@@ -32,7 +34,9 @@ export function Sidebar() {
                             <li
                                 aria-checked={dados.route == item.id}
                                 onclick={_ => dispatch.setRoute(item.id)}>
-                                {item.icon()}
+                                {item.id == 'notify' ? (
+                                    <div class={style.icon_notify}>{item.icon()}</div>
+                                ) : item.icon()}
                                 <p>{item.title}</p>
                             </li>
                         )}

@@ -30,10 +30,17 @@
     padding: 2px 10px 2px 15px;
     margin-bottom: 15px;
 }
-.root li > svg {
+
+.icon_notify {
     font-size: 18px;
     margin-right: 8px;
 }
+
+.root li>svg {
+    font-size: 18px;
+    margin-right: 8px;
+}
+
 .root li::before {
     content: '';
     position: absolute;
@@ -58,7 +65,7 @@
     color: rgba(215, 210, 210);
 }
 
-.root li[aria-checked="true"] > svg {
+.root li[aria-checked="true"]>svg {
     filter: invert(43%) sepia(82%) saturate(562%) hue-rotate(166deg) brightness(106%) contrast(109%);
 }
 
