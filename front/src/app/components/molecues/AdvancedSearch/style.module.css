@@ -1,0 +1,14 @@
+.root_advanced {
+    display: flex;
+    flex-direction: column;
+    padding: 20px 0px;
+}
+
+.root_advanced > div > h3 {
+    font-size: 18px;
+    font-weight: 400;
+}
+
+.root_advanced > div > svg {
+    font-size: 18px;
+}

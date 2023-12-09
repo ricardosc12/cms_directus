@@ -1,0 +1,10 @@
+.root {
+    display: flex;
+    align-items: center;
+    margin-right: 2.5rem;
+}
+
+.root > div {
+    box-shadow: 0px 0px 0px 3px var(--steam-color),
+    0px 0px 10px var(--steam-color);
+}

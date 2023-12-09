@@ -1,0 +1,104 @@
+.custom {
+    padding: 0px 12px;
+    border-radius: 9px;
+    background-color: var(--hover-main);
+    color: rgba(215, 210, 210);
+    min-height: 35px;
+}
+
+.custom:focus-within {
+    outline-color: var(--steam-color);
+    outline-offset: 0;
+    outline-style: solid;
+    outline-width: 2px;
+    box-shadow: 0px 0px 6px var(--steam-color);
+}
+
+.custom .solid-select-control {
+    outline: none;
+    border: none;
+}
+
+.custom .solid-select-placeholder {
+    color: rgba(240, 240, 245, .5);
+}
+
+.custom .solid-select-option {
+    cursor: pointer;
+    border-radius: 7px;
+}
+
+.custom .solid-select-option:hover {
+    background-color: var(--steam-color-off);
+    color: #fff;
+}
+
+.custom .solid-select-option[data-focused=true] {
+    background-color: var(--steam-color);
+    color: #fff;
+}
+
+.custom .solid-select-input {
+    outline: none;
+}
+
+.custom .solid-select-list {
+    /* background: radial-gradient(at bottom right, #405c7228, #405c7218, #000); */
+    background: radial-gradient(circle at 10% 20%, #2c2338, transparent 50%),
+        radial-gradient(circle at 30% 50%, #120d21, transparent 50%),
+        radial-gradient(circle at 70% 70%, #151729, transparent 50%),
+        radial-gradient(circle at 90% 10%, #1a2c32, transparent 50%);
+    backdrop-filter: blur(10px);
+}
+
+.custom .solid-select-list::-webkit-scrollbar {
+    width: 3px;
+    border-radius: 99rem;
+}
+
+.custom .solid-select-list::-webkit-scrollbar-track {
+    background: var(--steam-color-off);
+    width: 100px;
+}
+
+.custom .solid-select-list::-webkit-scrollbar-thumb {
+    background-color: var(--steam-color);
+}
+
+.custom .solid-select-multi-value {
+    background-color: var(--steam-color-off);
+    border-radius: 99px;
+    font-weight: 400;
+    padding: 0 5px 0 15px;
+}
+
+.custom .solid-select-multi-value>button {
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    margin-left: 5px;
+    z-index: 1;
+}
+
+.custom .solid-select-multi-value>button::before {
+    content: '';
+    position: absolute;
+    width: 19px;
+    height: 19px;
+    border-radius: 99px;
+    top: 2px;
+    left: 0px;
+    background-color: var(--hover-main);
+    z-index: -1;
+    transform: scale(0);
+    transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.custom .solid-select-multi-value>button:hover::before {
+    transform: scale(1);
+    transition: all 200ms cubic-bezier(0.075, 0.82, 0.165, 1);
+}
+
+.custom:focus-within>svg {
+    filter: invert(43%) sepia(82%) saturate(562%) hue-rotate(166deg) brightness(106%) contrast(109%);
+}

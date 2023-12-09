@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+    color: rgba(240, 240, 245);
+}
+
+:root {
+    --header-padding-top: 2rem;
+    --hover-main: rgba(100, 100, 110, 0.3);
+    --hover-main-active: rgba(120, 120, 130, .3);
+    --steam-color: #1A9FFF;
+    --steam-color-hover: #44b1ff;
+    --steam-color-off: #405c729f;
+    --background-color: #141921;
+}
+
+.price {
+    background-color: var(--steam-color-off);
+    color: var(--steam-color);
+    font-weight: 500;
+    width: fit-content;
+    height: fit-content;
+    min-width: fit-content;
+    font-size: 14px;
+    padding: 1px 9px;
+    border-radius: 7px;
+}
+
+.price::before{
+    content: "$ ";
+}

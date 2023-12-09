@@ -1,0 +1,45 @@
+.image {
+    max-height: 120px;
+}
+
+.loading_image {
+    display: flex;
+    border-radius: 12px;
+    overflow: hidden;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    max-width: 255px;
+    max-height: 120px;
+    height: 120px;
+    background: transparent url("steam.gif") center center no-repeat;
+    background-size: contain;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 255px;
+    margin-top: 120px;
+}
+
+.info>h3 {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.delete {
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 24px;
+    height: 24px;
+    background-color: rgba(255, 0, 0, .5);
+    border-radius: 30px;
+}
