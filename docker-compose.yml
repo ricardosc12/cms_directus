@@ -20,3 +20,9 @@ services:
       WEBSOCKETS_ENABLED: true
       WEBSOCKETS_REST_AUTH: "public"
     network_mode: host
+
+  front:
+    container_name: front_cms
+    working_dir: /app
+    build: ./front
+    network_mode: host

@@ -1,0 +1,22 @@
+services:
+  directus:
+    container_name: directus
+    image: directus/directus
+    ports:
+      - "8055:8055"
+    volumes:
+      - ./cms/database:/directus/database
+      - ./cms/uploads:/directus/uploads
+      - ./cms/extensions:/directus/extensions
+    environment:
+      KEY: root
+      SECRET: root
+      ADMIN_EMAIL: root@root.com
+      ADMIN_PASSWORD: root
+      CORS_ENABLED: true
+      CORS_ORIGIN: true
+      DB_CLIENT: "sqlite3"
+      DB_FILENAME: "/directus/database/data.db"
+      WEBSOCKETS_ENABLED: true
+      WEBSOCKETS_REST_AUTH: "public"
+    network_mode: host

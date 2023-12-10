@@ -1,9 +1,12 @@
 import { useStore } from "@/app/store"
 import { For, createEffect, createMemo, createSignal, on } from "solid-js"
 import { User } from "../../interfaces/user"
-import { deleteItem, readItems, readUser, readUsers } from "@directus/sdk"
+import { createItem, deleteItem, readItems, readUser, readUsers } from "@directus/sdk"
 import { directusClient } from "@/app/layout/Header"
 import { Button } from "../../atoms/Button"
+import Modal from "../../molecues/Modal"
+import { Input } from "../../atoms/Input"
+import { CloseIcon } from "@/icons"
 
 interface Team {
     owner: string;
@@ -12,11 +15,13 @@ interface Team {
 }
 
 export function MyTeamPage() {
-    const { dados } = useStore()
+    const { dados, dispatch } = useStore()
     const isLogging = createMemo(() => dados.isLogging)
 
     const [team, setTeam] = createSignal<Team>()
     const [user, setUser] = createSignal<User>()
+
+    const [isModalOpen, setIsModalOpen] = createSignal(false)
 
     async function getTeam() {
         const user = await directusClient.request(readUsers({
@@ -54,12 +59,44 @@ export function MyTeamPage() {
         getTeam()
     }
 
+    async function handleCreateTeam() {
+        const nome = (document.getElementById("team-name") as HTMLInputElement).value
+        directusClient.request(createItem('times', {
+            nome: nome
+        }))
+            .then(_ => getTeam())
+
+        setIsModalOpen(false)
+    }
+
+    function handleDeleteTeam() {
+        //@ts-ignore
+        const teamId = user()?.time_owner[0]
+        if (teamId) {
+            directusClient.request(deleteItem('times', teamId))
+                //@ts-ignore
+                .then((e: Response) => e.status === 204 && getTeam())
+
+        }
+    }
+
+
     return (
         <>
             {team() ? (< div class="flex mt-3 flex-col" >
                 <div class="flex space-x-3 items-center">
                     <h3>{team()?.nome}</h3>
-                    <h4 class="text-xs">{team()?.owner == user()?.id ? "Você é o dono" : <Button onclick={_ => handleKickPlayer([user()?.time[0].id])} class="px-5">SAIR</Button>}</h4>
+                    <h4 class="text-xs">{team()?.owner == user()?.id ? (
+                        <div class="flex items-center space-x-3">
+                            <div>Você é o dono</div>
+                            <Button onclick={handleDeleteTeam} class="h-6 px-3">Fechar time</Button>
+                        </div>
+                    ) :
+                        <>
+                            <Button onclick={_ => handleKickPlayer([user()?.time[0].id])} class="px-5">SAIR</Button>
+                        </>
+                    }
+                    </h4>
                 </div>
                 <h3 class="mt-3">Membros</h3>
                 <div class="flex flex-wrap space-x-3">
@@ -73,7 +110,22 @@ export function MyTeamPage() {
                     </For>
                 </div>
             </div >) :
-                <div>Você não está em um time</div>
+                <div>
+                    <h3>Você não está em um time</h3>
+                    <div class="flex items-center space-x-3">
+                        <Button onclick={() => setIsModalOpen(true)} class="px-3">Criar um time</Button>
+                        <Button onclick={() => dispatch.setRoute('team')} class="px-3">Entrar em um time</Button>
+                    </div>
+                    <Modal isOpen={isModalOpen()} onClose={() => setIsModalOpen(false)}>
+                        <div>
+                            <h3 class="text-lg font-medium mb-4">Criar time</h3>
+                            <Input id="team-name" placeholder="Nome do Time" />
+                            <div class="flex w-full justify-end mt-5">
+                                <Button onclick={handleCreateTeam} class="px-3">Criar</Button>
+                            </div>
+                        </div>
+                    </Modal>
+                </div>
             }
         </>
     )

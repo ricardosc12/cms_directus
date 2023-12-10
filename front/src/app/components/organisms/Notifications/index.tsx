@@ -19,7 +19,7 @@ export function NotificationPage() {
         const status: any = target.getAttribute('data-event')
         const id: any = target.getAttribute('data-id')
         directusClient.request(updateNotification(id, {
-            status
+            status: status
         }))
     }
 
@@ -31,7 +31,8 @@ export function NotificationPage() {
                         <div>
                             <div>tipo: {item.subject}</div>
                             <div>sender: {item.sender.email}</div>
-                            <div>recipient: {item.recipient.email}</div>
+                            <div>recipient: {item.recipient?.email}</div>
+                            <div>status: {item.status}</div>
                         </div>
                         <Button data-id={item.id} data-event="approve"
                             onclick={handleEditNotify} class="ml-3 text-xs px-3 h-6 bg-green-600 hover:bg-green-400">approve</Button>

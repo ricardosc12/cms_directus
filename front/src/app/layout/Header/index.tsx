@@ -2,7 +2,7 @@
 // import { GamesList } from "./components/GamesList";
 // import { HeaderMain } from "./components/Header";
 import { createEffect, createSignal, on, onMount } from "solid-js";
-import { createDirectus, rest, authentication, readUsers } from '@directus/sdk';
+import { createDirectus, rest, authentication } from '@directus/sdk';
 
 //@ts-ignore
 import { createOptions } from "@thisbeyond/solid-select";
@@ -18,6 +18,7 @@ export function HeaderUsers() {
 
     const { dados, dispatch } = useStore()
     let connection: WebSocket;
+    let pingPong: NodeJS.Timer;
 
     const [user, setUser] = createSignal({
         email: 'root@root.com',
@@ -30,6 +31,7 @@ export function HeaderUsers() {
             await directusClient.login(u.email, u.password)
             dispatch.setUserEmail(user().email)
             dispatch.setIsLogging(false)
+            clearInterval(pingPong)
             notifyListening()
         })();
     }))
@@ -47,6 +49,7 @@ export function HeaderUsers() {
         connection = new WebSocket(url);
 
         connection.addEventListener('open', async function () {
+            console.log("OPEN")
             connection.send(
                 JSON.stringify({
                     type: 'auth',
@@ -62,6 +65,13 @@ export function HeaderUsers() {
                     },
                 })
             );
+            pingPong = setInterval(() => {
+                connection.send(
+                    JSON.stringify({
+                        type: 'ping'
+                    })
+                );
+            }, 30)
         });
 
         connection.addEventListener('message', function (message) {
@@ -76,10 +86,22 @@ export function HeaderUsers() {
                 else if (data.event === 'delete') {
                     dispatch.setNotifications(dados.notifications.filter(item => item.id != data.data[0]))
                 }
-                // console.log(data.event);
-                // console.log(data.data);
+                else if (data.event === "update") {
+                    dispatch.setNotifications(dados.notifications.map(item => {
+                        if (item.id == data.data[0].id) {
+                            return data.data[0]
+                        }
+                        return item
+                    }))
+                }
             }
         });
+
+        connection.addEventListener('close', function (message) {
+            console.log("CLOSE")
+            clearInterval(pingPong)
+            console.log(message)
+        })
     }
 
 
