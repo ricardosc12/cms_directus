@@ -184,3 +184,27 @@ export function BanIcon(props) {
         <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><circle cx="12" cy="6" r="4" fill="currentColor"></circle><path fill="currentColor" fillRule="evenodd" d="M18 15.75a2.25 2.25 0 0 0-2.03 3.22l3-3a2.24 2.24 0 0 0-.97-.22Zm2.03 1.28l-3 3a2.25 2.25 0 0 0 3-3Zm-5.78.97a3.75 3.75 0 1 1 7.5 0a3.75 3.75 0 0 1-7.5 0Z" clipRule="evenodd"></path><path fill="currentColor" d="M17.216 14.332a3.751 3.751 0 0 0-1.97 6.213c-.97.29-2.075.455-3.246.455c-3.866 0-7-1.79-7-4s3.134-4 7-4c2.072 0 3.934.514 5.216 1.332Z" opacity=".5"></path></svg>
     )
 }
+
+export function BlockIcon(props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 16 16" {...props}><g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"><circle cx="8" cy="8" r="6.25"></circle><path d="m4.25 11.75l8-8"></path></g></svg>
+    )
+}
+
+export function FlagIcon(props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" fillRule="evenodd" d="M6.5 1.75a.75.75 0 0 0-1.5 0v20a.75.75 0 0 0 1.5 0v-20Z" clipRule="evenodd" opacity=".5"></path><path fill="currentColor" d="m13.349 3.79l-.204-.082a8.677 8.677 0 0 0-4.924-.452L6.5 3.6v10l1.72-.344a8.677 8.677 0 0 1 4.925.452a8.677 8.677 0 0 0 5.327.361l.214-.053a1.404 1.404 0 0 0 1.064-1.362V5.287a1.2 1.2 0 0 0-1.49-1.164a7.999 7.999 0 0 1-4.911-.334Z"></path></svg>
+    )
+}
+
+export function HandShake(props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" fillRule="evenodd" d="M1.818 5.272a.75.75 0 0 1 .91.546l.382 1.528a6.709 6.709 0 0 0 4.975 4.904H16a4.124 4.124 0 0 1 4.096 3.642l.649 5.52a.75.75 0 1 1-1.49.176l-.65-5.52A2.624 2.624 0 0 0 16 13.75H7.918l-.08-.018A8.209 8.209 0 0 1 1.654 7.71l-.382-1.528a.75.75 0 0 1 .545-.91Z" clipRule="evenodd"></path><path fill="currentColor" d="M8 13.75V18c0 1.886 0 2.828.586 3.414C9.172 22 10.114 22 12 22c1.886 0 2.828 0 3.414-.586C16 20.828 16 19.886 16 18v-4.25H8Z" opacity=".5"></path><circle cx="12" cy="6" r="4" fill="currentColor"></circle></svg>
+    )
+}
+
+export function DoorIcon(props) {
+    return (
+        <svg xmlns="http://www.w3.org/2000/svg" width="1em" height="1em" viewBox="0 0 24 24" {...props}><path fill="currentColor" d="M4 22V4q0-.825.588-1.412T6 2h12q.825 0 1.413.588T20 4v18zm11.5-8.5q.625 0 1.063-.437T17 12q0-.625-.437-1.062T15.5 10.5q-.625 0-1.062.438T14 12q0 .625.438 1.063t1.062.437"></path></svg>
+    )
+}

@@ -85,7 +85,7 @@ export function Sidebar() {
 
     return (
         <div class={style.root}>
-            <img class='ml-3' width="100px" src="steam-logo.png" alt="STEAM" />
+            <img class='ml-10' width="60px" src="logo.png" alt="STEAM" />
             <nav>
                 <ul>
                     <For each={routes}>
@@ -120,12 +120,12 @@ export function Sidebar() {
                     </div>
                     <div class='space-y-3'>
                         <div class='flex space-x-3'>
-                            <Input onchange={set('first_name')} class='flex-1' placeholder="Nome" icon={UserIcon} />
+                            <Input onchange={set('first_name')} class='w-full' placeholder="Nome" icon={UserIcon} />
                             <Select initialValue={{ name: "Jogador", id: "d57e7a31-ac8d-40e7-a570-0b3f1e2d481b" }}
                                 onChange={(e: any) => {
                                     setSets(e.name),
                                         set('role')(e);
-                                }} class='w-[200px]' icon={RoleIcon}
+                                }} class='w-[200px] max-w-[200px]' icon={RoleIcon}
                                 placeholder='Papel' {...rolesOptions()}
                             />
                         </div>

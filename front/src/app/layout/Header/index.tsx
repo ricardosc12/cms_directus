@@ -9,7 +9,7 @@ import { createOptions } from "@thisbeyond/solid-select";
 import { Select } from "@/app/components/atoms/Select";
 import { Button } from "@/app/components/atoms/Button";
 import { useStore } from "@/app/store";
-import { LoadIcon } from "@/icons";
+import { DoorIcon, LoadIcon } from "@/icons";
 import { Notify } from "@/app/components/interfaces/notify";
 import { Role } from "@/app/components/interfaces/role";
 import { User } from "@/app/components/interfaces/user";
@@ -24,7 +24,10 @@ export function HeaderUsers() {
 
     const [user, setUser] = createSignal({
         email: 'root@root.com',
-        password: "root"
+        password: "root",
+        image: 'user.png',
+        first_name: "Root",
+        label: "Root"
     })
 
     const [users, setUsers] = createSignal({ format: null })
@@ -47,7 +50,8 @@ export function HeaderUsers() {
                 return {
                     email: user.email,
                     label: user.first_name,
-                    password: user.email.split("@")[0]
+                    password: user.email.split("@")[0],
+                    image: user.image
                 }
             })
             setUsers(createOptions(usersOptions, { key: 'label' }))
@@ -132,22 +136,30 @@ export function HeaderUsers() {
 
     return (
         <div>
-            <div class="flex items-center mb-5 space-x-5">
-                <div class="flex items-center space-x-3">
-                    <div>
-                        <h3 class="text-lg font-medium">User Atual</h3>
-                        <p class="text-base font-medium">User: {user().email}</p>
+            <div class="flex items-center mb-5 space-x-5 justify-between pr-10">
+                <div class="flex items-center space-x-3 flex-1">
+                    <div class="flex justify-center items-center w-10 h-10 rounded-full overflow-hidden">
+                        <img src={user().image || "user.png"} class="object-contain w-full h-full" />
                     </div>
-                    <Button onclick={() => directusClient.logout()} class="px-3">Log Out</Button>
+                    <div class="flex flex-col">
+                        <p class="text-base font-medium text-slate-300">{user().label}</p>
+                        <p class="text-sm font-medium text-slate-400">{user().email}</p>
+                    </div>
+                    <div>
+                        {dados.isLogging ? <LoadIcon class="text-2xl" /> : ''}
+                    </div>
+
                 </div>
-                <div>
-                    {dados.isLogging ? <LoadIcon class="text-2xl" /> : ''}
+                <div class="flex items-center space-x-5">
+                    {users().format ?
+                        <Select class="min-w-[150px] max-w-[150px]"
+                            initialValue={{ label: 'Root', email: 'root@root.com', password: "root" }} onChange={setUser} placeholder="User" {...users()} />
+                        : <p>Loading...</p>
+                    }
+                    <Button icon={DoorIcon} onclick={() => directusClient.logout()} class="px-3 h-7 bg-gray-600 text-sm">Sair</Button>
                 </div>
             </div>
-            {users().format ?
-                <Select initialValue={{ label: 'Root', email: 'root@root.com', password: "root" }} onChange={setUser} placeholder="User" {...users()} />
-                : 'loading...'
-            }
+
 
 
 
