@@ -5,6 +5,7 @@ import style from './style.module.css'
 interface InputProps extends JSX.HTMLAttributes<HTMLInputElement> {
     placeholder?: string;
     icon?: any;
+    type?: string;
 }
 
 export function Input(props: InputProps) {

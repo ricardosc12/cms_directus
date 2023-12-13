@@ -17,8 +17,9 @@ const Modal = (props: ModalPros) => {
 
     return (
         <Show when={props.isOpen}>
-            <div onclick={handleCloseOnBlur} ref={ref} class="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-                <section class="relative bg-primary border-2 border-[var(--steam-color-off)] px-6 py-3 rounded-lg">
+            <div class='fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50'></div>
+            <div onclick={handleCloseOnBlur} ref={ref} class="fixed inset-0 flex justify-center items-center z-50">
+                <section class="bg-black relative bg-primary border-2 border-[var(--steam-color-off)] px-6 py-3 rounded-lg">
                     {props.children}
                     <CloseIcon onClick={props.onClose} class="cursor-pointer absolute top-3 right-3 text-2xl" />
                 </section>

@@ -38,6 +38,8 @@ export interface User {
     time: {
         id: string;
     }[],
-    time_owner: []
+    time_owner: [],
+    status_tag: "ativo" | "ban";
+    image: string;
 }
 

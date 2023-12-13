@@ -32,7 +32,10 @@ export function TeamsPage() {
                 {(item) => {
                     return <div class="flex w-[150px] bg-slate-700 rounded-md h-[100px] px-3 py-2 flex-col justify-between">
                         <p>{item.nome}</p>
-                        <Button data-id={item.owner} onclick={handleRequestTeam} class="h-7 text-xs px-3 ml-auto mb-2">Entrar</Button>
+                        <div class="flex">
+                            <Button data-id={item.owner} onclick={handleRequestTeam} class="h-7 text-xs px-3 ml-auto mb-2 bg-red-600">Banir</Button>
+                            <Button data-id={item.owner} onclick={handleRequestTeam} class="h-7 text-xs px-3 ml-auto mb-2">Entrar</Button>
+                        </div>
                     </div>
                 }}
             </For>

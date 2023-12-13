@@ -13,6 +13,9 @@ export function useForm() {
             else if (typeof e?.target?.value === "string") {
                 setForm(state => ({ ...state, [id]: e.target.value }))
             }
+            else {
+                setForm(state => ({ ...state, [id]: e }))
+            }
         }
     }
 

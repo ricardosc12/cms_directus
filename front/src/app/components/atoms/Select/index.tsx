@@ -10,6 +10,7 @@ interface SelectProps extends CreateSelectProps {
     class?: string;
     onChange?: any;
     multiple?: boolean;
+    initialValue: any;
 }
 
 export function Select(props: SelectProps) {

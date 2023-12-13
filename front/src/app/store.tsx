@@ -2,6 +2,7 @@ import { createContext, useContext } from "solid-js";
 import { produce } from "solid-js/store"
 import { createStore } from "solid-js/store";
 import { Notify } from "./components/interfaces/notify";
+import { Role } from "./components/interfaces/role";
 
 const StoreContext = createContext<GameContextValue>();
 
@@ -11,6 +12,7 @@ interface GameContextValue {
         isLogging: boolean;
         user_email: string;
         notifications: Notify[];
+        roles: Role[];
 
     };
     dispatch: {
@@ -18,6 +20,8 @@ interface GameContextValue {
         setIsLogging: (props: boolean) => void;
         setUserEmail: (props: string) => void;
         setNotifications: (props: Notify[]) => void;
+        setRoles: (props: Role[]) => void;
+
     };
 }
 //@ts-ignore
@@ -30,7 +34,8 @@ export function StorageProvider(props: any) {
             route: "players",
             isLogging: true,
             user_email: "root@root.com",
-            notifications: [] as Notify[]
+            notifications: [] as Notify[],
+            roles: [] as Role[]
         }
     });
 
@@ -48,6 +53,9 @@ export function StorageProvider(props: any) {
             })),
             setNotifications: (payload: Notify[]) => set(produce((state) => {
                 state.dados.notifications = payload;
+            })),
+            setRoles: (payload: Role[]) => set(produce((state) => {
+                state.dados.roles = payload;
             })),
         }
     }
