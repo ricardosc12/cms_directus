@@ -44,7 +44,7 @@ export function TeamsPage() {
                             </div>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="font-medium text-sm text-slate-400">Membros: {item.membros.length}</span>
+                            <span class="font-medium text-sm text-slate-400">Membros: {item.membros?.length}</span>
                             <Button icon={HandShake} data-id={item.owner.id} onclick={handleRequestTeam} class="bg-gray-600 h-7 text-xs px-3 ml-auto mb-2">Entrar</Button>
                         </div>
                     </div>
